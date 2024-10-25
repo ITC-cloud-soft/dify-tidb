@@ -47,7 +47,10 @@
   <a href="https://trendshift.io/repositories/2152" target="_blank"><img src="https://trendshift.io/api/badge/repositories/2152" alt="langgenius%2Fdify | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </p>
 
-DifyはオープンソースのLLMアプリケーション開発プラットフォームです。直感的なインターフェイスには、AIワークフロー、RAGパイプライン、エージェント機能、モデル管理、観測機能などが組み合わさっており、プロトタイプから生産まで迅速に進めることができます。以下の機能が含まれます：
+DifyはオープンソースのLLMアプリケーション開発プラットフォームです。直感的なインターフェイスには、AIワークフロー、RAGパイプライン、エージェント機能、モデル管理、観測機能などが組み合わさっており、プロトタイプから生産まで迅速に進めることができます。
+
+現在のDify-TiDBバージョンでは、PostgreSQLをTiDBに置き換え、Difyのすべての機能を完全に実装し、Difyと同期した更新を維持しています 
+以下の機能が含まれます：
 </br> </br>
 
 **1. ワークフロー**: 

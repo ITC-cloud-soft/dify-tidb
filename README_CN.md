@@ -48,7 +48,10 @@
   <a href="https://trendshift.io/repositories/2152" target="_blank"><img src="https://trendshift.io/api/badge/repositories/2152" alt="langgenius%2Fdify | 趋势转变" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </div>
 
-Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 工作流、RAG 管道、Agent、模型管理、可观测性功能等，让您可以快速从原型到生产。以下是其核心功能列表：
+Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 工作流、RAG 管道、Agent、模型管理、可观测性功能等，让您可以快速从原型到生产。
+
+当前Dify-Tidb版本使用Tidb替换了PostgreSQL，完全实现了Dify的全部功能，并且保持和Dify的同步更新。   
+以下是其核心功能列表：
 </br> </br>
 
 **1. 工作流**: 

@@ -42,7 +42,8 @@
 </p>
 
 
-Dify is an open-source LLM app development platform. Its intuitive interface combines AI workflow, RAG pipeline, agent capabilities, model management, observability features and more, letting you quickly go from prototype to production. Here's a list of the core features:
+Dify is an open-source LLM app development platform. Its intuitive interface combines AI workflow, RAG pipeline, agent capabilities, model management, observability features and more, letting you quickly go from prototype to production.   
+The current Dify-TiDB version replaces PostgreSQL with TiDB, fully implementing all Dify functionalities while maintaining synchronized updates with Dify.  、Here's a list of the core features:
 </br> </br>
 
 **1. Workflow**: 
