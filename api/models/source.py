@@ -15,7 +15,7 @@ class DataSourceOauthBinding(db.Model):
         db.Index("source_info_idx", "source_info", postgresql_using="gin"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     access_token = db.Column(db.String(255), nullable=False)
     provider = db.Column(db.String(255), nullable=False)
@@ -33,7 +33,7 @@ class DataSourceApiKeyAuthBinding(db.Model):
         db.Index("data_source_api_key_auth_binding_provider_idx", "provider"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     category = db.Column(db.String(255), nullable=False)
     provider = db.Column(db.String(255), nullable=False)

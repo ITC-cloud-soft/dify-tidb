@@ -94,7 +94,7 @@ class Workflow(db.Model):
         db.Index("workflow_version_idx", "tenant_id", "app_id", "version"),
     )
 
-    id: Mapped[str] = mapped_column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id: Mapped[str] = mapped_column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id: Mapped[str] = mapped_column(StringUUID, nullable=False)
     app_id: Mapped[str] = mapped_column(StringUUID, nullable=False)
     type: Mapped[str] = mapped_column(db.String(255), nullable=False)
@@ -380,7 +380,7 @@ class WorkflowRun(db.Model):
         db.Index("workflow_run_tenant_app_sequence_idx", "tenant_id", "app_id", "sequence_number"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     app_id = db.Column(StringUUID, nullable=False)
     sequence_number = db.Column(db.Integer, nullable=False)
@@ -604,7 +604,7 @@ class WorkflowNodeExecution(db.Model):
         ),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     app_id = db.Column(StringUUID, nullable=False)
     workflow_id = db.Column(StringUUID, nullable=False)
@@ -733,7 +733,7 @@ class WorkflowAppLog(db.Model):
         db.Index("workflow_app_log_app_idx", "tenant_id", "app_id"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     app_id = db.Column(StringUUID, nullable=False)
     workflow_id = db.Column(StringUUID, nullable=False)

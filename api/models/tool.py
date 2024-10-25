@@ -24,7 +24,7 @@ class ToolProvider(db.Model):
         db.UniqueConstraint("tenant_id", "tool_name", name="unique_tool_provider_tool_name"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     tool_name = db.Column(db.String(40), nullable=False)
     encrypted_credentials = db.Column(db.Text, nullable=True)

@@ -40,7 +40,7 @@ class Dataset(db.Model):
     INDEXING_TECHNIQUE_LIST = ["high_quality", "economy", None]
     PROVIDER_LIST = ["vendor", "external", None]
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
@@ -207,7 +207,7 @@ class DatasetProcessRule(db.Model):
         db.Index("dataset_process_rule_dataset_id_idx", "dataset_id"),
     )
 
-    id = db.Column(StringUUID, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, nullable=False,  default=lambda: str(uuid.uuid4()))
     dataset_id = db.Column(StringUUID, nullable=False)
     mode = db.Column(db.String(255), nullable=False, server_default=db.text("'automatic'::character varying"))
     rules = db.Column(db.Text, nullable=True)
@@ -252,7 +252,7 @@ class Document(db.Model):
     )
 
     # initial fields
-    id = db.Column(StringUUID, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, nullable=False,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     dataset_id = db.Column(StringUUID, nullable=False)
     position = db.Column(db.Integer, nullable=False)
@@ -505,7 +505,7 @@ class DocumentSegment(db.Model):
     )
 
     # initial fields
-    id = db.Column(StringUUID, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, nullable=False,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     dataset_id = db.Column(StringUUID, nullable=False)
     document_id = db.Column(StringUUID, nullable=False)
@@ -593,7 +593,7 @@ class AppDatasetJoin(db.Model):
         db.Index("app_dataset_join_app_dataset_idx", "dataset_id", "app_id"),
     )
 
-    id = db.Column(StringUUID, primary_key=True, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, primary_key=True, nullable=False,  default=lambda: str(uuid.uuid4()))
     app_id = db.Column(StringUUID, nullable=False)
     dataset_id = db.Column(StringUUID, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.current_timestamp())
@@ -610,7 +610,7 @@ class DatasetQuery(db.Model):
         db.Index("dataset_query_dataset_id_idx", "dataset_id"),
     )
 
-    id = db.Column(StringUUID, primary_key=True, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, primary_key=True, nullable=False,  default=lambda: str(uuid.uuid4()))
     dataset_id = db.Column(StringUUID, nullable=False)
     content = db.Column(db.Text, nullable=False)
     source = db.Column(db.String(255), nullable=False)
@@ -627,7 +627,7 @@ class DatasetKeywordTable(db.Model):
         db.Index("dataset_keyword_table_dataset_id_idx", "dataset_id"),
     )
 
-    id = db.Column(StringUUID, primary_key=True, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, primary_key=True,  default=lambda: str(uuid.uuid4()))
     dataset_id = db.Column(StringUUID, nullable=False, unique=True)
     keyword_table = db.Column(db.Text, nullable=False)
     data_source_type = db.Column(
@@ -673,7 +673,7 @@ class Embedding(db.Model):
         db.Index("created_at_idx", "created_at"),
     )
 
-    id = db.Column(StringUUID, primary_key=True, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, primary_key=True,  default=lambda: str(uuid.uuid4()))
     model_name = db.Column(
         db.String(255), nullable=False, server_default=db.text("'text-embedding-ada-002'::character varying")
     )
@@ -696,7 +696,7 @@ class DatasetCollectionBinding(db.Model):
         db.Index("provider_model_name_idx", "provider_name", "model_name"),
     )
 
-    id = db.Column(StringUUID, primary_key=True, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, primary_key=True,  default=lambda: str(uuid.uuid4()))
     provider_name = db.Column(db.String(40), nullable=False)
     model_name = db.Column(db.String(255), nullable=False)
     type = db.Column(db.String(40), server_default=db.text("'dataset'::character varying"), nullable=False)
@@ -713,7 +713,7 @@ class DatasetPermission(db.Model):
         db.Index("idx_dataset_permissions_tenant_id", "tenant_id"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"), primary_key=True)
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()), primary_key=True)
     dataset_id = db.Column(StringUUID, nullable=False)
     account_id = db.Column(StringUUID, nullable=False)
     tenant_id = db.Column(StringUUID, nullable=False)
@@ -729,7 +729,7 @@ class ExternalKnowledgeApis(db.Model):
         db.Index("external_knowledge_apis_name_idx", "name"),
     )
 
-    id = db.Column(StringUUID, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, nullable=False,  default=lambda: str(uuid.uuid4()))
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     tenant_id = db.Column(StringUUID, nullable=False)
@@ -784,7 +784,7 @@ class ExternalKnowledgeBindings(db.Model):
         db.Index("external_knowledge_bindings_external_knowledge_api_idx", "external_knowledge_api_id"),
     )
 
-    id = db.Column(StringUUID, nullable=False, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID, nullable=False,  default=lambda: str(uuid.uuid4()))
     tenant_id = db.Column(StringUUID, nullable=False)
     external_knowledge_api_id = db.Column(StringUUID, nullable=False)
     dataset_id = db.Column(StringUUID, nullable=False)

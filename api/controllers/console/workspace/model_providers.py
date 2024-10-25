@@ -21,7 +21,7 @@ class ModelProviderListApi(Resource):
     @login_required
     @account_initialization_required
     def get(self):
-        tenant_id = current_user.current_tenant_id
+        tenant_id = str(current_user.current_tenant_id)
 
         parser = reqparse.RequestParser()
         parser.add_argument(

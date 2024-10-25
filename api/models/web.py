@@ -11,7 +11,7 @@ class SavedMessage(db.Model):
         db.Index("saved_message_message_idx", "app_id", "message_id", "created_by_role", "created_by"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     app_id = db.Column(StringUUID, nullable=False)
     message_id = db.Column(StringUUID, nullable=False)
     created_by_role = db.Column(db.String(255), nullable=False, server_default=db.text("'end_user'::character varying"))
@@ -30,7 +30,7 @@ class PinnedConversation(db.Model):
         db.Index("pinned_conversation_conversation_idx", "app_id", "conversation_id", "created_by_role", "created_by"),
     )
 
-    id = db.Column(StringUUID, server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(StringUUID,  default=lambda: str(uuid.uuid4()))
     app_id = db.Column(StringUUID, nullable=False)
     conversation_id = db.Column(StringUUID, nullable=False)
     created_by_role = db.Column(db.String(255), nullable=False, server_default=db.text("'end_user'::character varying"))

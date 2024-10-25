@@ -4,23 +4,20 @@ from sqlalchemy.dialects.postgresql import UUID
 
 class StringUUID(TypeDecorator):
     impl = CHAR
-    cache_ok = True
+    cache_ok = True  # 设置 cache_ok 属性
+
+    def __init__(self, length=36, **kwargs):
+        super().__init__(**kwargs)
+        self.length = length
 
     def process_bind_param(self, value, dialect):
         if value is None:
             return value
-        elif dialect.name == "postgresql":
+        if isinstance(value, uuid.UUID):
             return str(value)
-        else:
-            return value.hex
-
-    def load_dialect_impl(self, dialect):
-        if dialect.name == "postgresql":
-            return dialect.type_descriptor(UUID())
-        else:
-            return dialect.type_descriptor(CHAR(36))
+        return value
 
     def process_result_value(self, value, dialect):
         if value is None:
             return value
-        return str(value)
+        return str(uuid.UUID(value))
