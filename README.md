@@ -191,49 +191,41 @@ If you need to customize the configuration, please refer to the comments in our 
 
 If you'd like to configure a highly-available setup, there are community-contributed [Helm Charts](https://helm.sh/) and YAML files which allow Dify to be deployed on Kubernetes.
 
-- [Helm Chart by @LeoQuote](https://github.com/douban/charts/tree/master/charts/dify)
-- [Helm Chart by @BorisPolonsky](https://github.com/BorisPolonsky/dify-helm)
-- [YAML file by @Winson-030](https://github.com/Winson-030/dify-kubernetes)
+###  Installation
 
-#### Using Terraform for Deployment
+You can easily install Yamler via Helm Charts. Follow these steps:
 
-Deploy Dify to Cloud Platform with a single click using [terraform](https://www.terraform.io/)
+1. Add the Yamler Helm repository:
+```bash
+helm repo add dify-tidb https://itc-cloud-soft.github.io/chart/dify/
+```
+2.	Update Helm repositories:
+```bash
+helm repo update
+```
+3.	Install Yamler using Helm:
+```bash
+helm install my-minio dify-tidb/minio --version 14.1.8
+```
+4.	Check installation status:
+```bash
+helm status my-minio
+```
+## Access Yamler Page
+When access Yamler homepage could use Lens or Kubernetes command to proxy the url.
+1. Use Lens to access
+Press forward button will automatically forward to browser 
+<table>
+    <tr>
+        <td><img src="https://itc-cloud-soft.github.io/doc-open/img/yamler/yamler_lens.png"/></td>
+    </tr>
+</table>
 
-##### Azure Global
-- [Azure Terraform by @nikawang](https://github.com/nikawang/dify-azure-terraform)
-
-##### Google Cloud
-- [Google Cloud Terraform by @sotazum](https://github.com/DeNA/dify-google-cloud-terraform)
-
-## Contributing
-
-For those who'd like to contribute code, see our [Contribution Guide](https://github.com/langgenius/dify/blob/main/CONTRIBUTING.md). 
-At the same time, please consider supporting Dify by sharing it on social media and at events and conferences.
-
-
-> We are looking for contributors to help with translating Dify to languages other than Mandarin or English. If you are interested in helping, please see the [i18n README](https://github.com/langgenius/dify/blob/main/web/i18n/README.md) for more information, and leave us a comment in the `global-users` channel of our [Discord Community Server](https://discord.gg/8Tpq4AcN9c).
-
-**Contributors**
-
-<a href="https://github.com/langgenius/dify/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=langgenius/dify" />
-</a>
-
-## Community & contact
-
-* [Github Discussion](https://github.com/langgenius/dify/discussions). Best for: sharing feedback and asking questions.
-* [GitHub Issues](https://github.com/langgenius/dify/issues). Best for: bugs you encounter using Dify.AI, and feature proposals. See our [Contribution Guide](https://github.com/langgenius/dify/blob/main/CONTRIBUTING.md).
-* [Discord](https://discord.gg/FngNHpbcY7). Best for: sharing your applications and hanging out with the community.
-* [X(Twitter)](https://twitter.com/dify_ai). Best for: sharing your applications and hanging out with the community.
-
-## Star history
-
-[![Star History Chart](https://api.star-history.com/svg?repos=langgenius/dify&type=Date)](https://star-history.com/#langgenius/dify&Date)
-
-
-## Security disclosure
-
-To protect your privacy, please avoid posting security issues on GitHub. Instead, send your questions to security@dify.ai and we will provide you with a more detailed answer.
+2. Use kubernetes command to access
+```shell
+kubectl port-forward service/my-helm-yarl 8081:8080 --namespace yamler
+```
+then access `https://localhost:8081` in browser
 
 ## License
 

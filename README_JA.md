@@ -198,43 +198,38 @@ docker compose up -d
 
 高可用性設定を設定する必要がある場合、コミュニティは[Helm Charts](https://helm.sh/)とYAMLファイルにより、DifyをKubernetesにデプロイすることができます。
 
-- [Helm Chart by @LeoQuote](https://github.com/douban/charts/tree/master/charts/dify)
-- [Helm Chart by @BorisPolonsky](https://github.com/BorisPolonsky/dify-helm)
-- [YAML file by @Winson-030](https://github.com/Winson-030/dify-kubernetes)
 
-#### Terraformを使用したデプロイ
+Helm Charts を使用して Dify-Tidb を簡単にインストールできます。以下の手順に従ってください：
 
-[terraform](https://www.terraform.io/) を使用して、ワンクリックでDifyをクラウドプラットフォームにデプロイします
+1. Dify-Tidb Helm レポジトリを追加します：
+```bash
+helm repo add dify-tidb https://itc-cloud-soft.github.io/chart/dify/
+```
+2.	Helm レポジトリを更新します：
+```bash
+helm repo update
+```
+3.	Helm を使用して Yamler をインストールします：
+```bash
+helm install my-minio dify-tidb/minio --version 14.1.8
+```
+4.	インストールステータスを確認します：
+```bash
+helm status my-minio 
+```
 
-##### Azure Global
-- [@nikawangによるAzure Terraform](https://github.com/nikawang/dify-azure-terraform)
+## Dify-Tidb ホームページにアクセス
+Dify-Tidb ホームページにアクセスする際に、Lens または Kubernetes コマンドを使用して URL をプロキシすることができます。
 
-##### Google Cloud
-- [@sotazumによるGoogle Cloud Terraform](https://github.com/DeNA/dify-google-cloud-terraform)
+1. Lens を使用してアクセスする todo
+転送ボタンを押すと、URL に自動的に転送されま
+<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/yamler/yamler_lens.png"/></td> </tr> </table>
 
-## 貢献
-
-コードに貢献したい方は、[Contribution Guide](https://github.com/langgenius/dify/blob/main/CONTRIBUTING.md)を参照してください。
-同時に、DifyをSNSやイベント、カンファレンスで共有してサポートしていただけると幸いです。
-
-
-> Difyを英語または中国語以外の言語に翻訳してくれる貢献者を募集しています。興味がある場合は、詳細については[i18n README](https://github.com/langgenius/dify/blob/main/web/i18n/README.md)を参照してください。また、[Discordコミュニティサーバー](https://discord.gg/8Tpq4AcN9c)の`global-users`チャンネルにコメントを残してください。
-
-**貢献者**
-
-<a href="https://github.com/langgenius/dify/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=langgenius/dify" />
-</a>
-
-## コミュニティ & お問い合わせ
-
-* [Github Discussion](https://github.com/langgenius/dify/discussions). 主に: フィードバックの共有や質問。
-* [GitHub Issues](https://github.com/langgenius/dify/issues). 主に: Dify.AIを使用する際に発生するエラーや問題については、[貢献ガイド](CONTRIBUTING_JA.md)を参照してください
-* [Discord](https://discord.gg/FngNHpbcY7). 主に: アプリケーションの共有やコミュニティとの交流。
-* [X(Twitter)](https://twitter.com/dify_ai). 主に: アプリケーションの共有やコミュニティとの交流。
-
-
-
+2. Kubernetes コマンドを使用してアクセスする
+```shell
+kubectl port-forward service/my-minio  8081:8080 --namespace dify
+```
+その後、ブラウザで https://localhost:80 にアクセスします。
 ## ライセンス
 
 このリポジトリは、Dify Open Source License にいくつかの追加制限を加えた[Difyオープンソースライセンス](LICENSE)の下で利用可能です。

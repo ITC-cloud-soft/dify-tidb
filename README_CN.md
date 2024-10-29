@@ -17,7 +17,7 @@
             alt="chat on Discord"></a>
     <a href="https://twitter.com/intent/follow?screen_name=dify_ai" target="_blank">
         <img src="https://img.shields.io/twitter/follow/dify_ai?logo=X&color=%20%23f5f5f5"
-            alt="follow on X(Twitter)"></a>
+            alt="follow on Twitter"></a>
     <a href="https://hub.docker.com/u/langgenius" target="_blank">
         <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/langgenius/dify-web?labelColor=%20%23FDB062&color=%20%23f79009"></a>
     <a href="https://github.com/langgenius/dify/graphs/commit-activity" target="_blank">
@@ -41,17 +41,13 @@
   <a href="./README_VI.md"><img alt="README Tiếng Việt" src="https://img.shields.io/badge/Ti%E1%BA%BFng%20Vi%E1%BB%87t-d9d9d9"></a>
 </div>
 
-
 #
 
 <div align="center">
   <a href="https://trendshift.io/repositories/2152" target="_blank"><img src="https://trendshift.io/api/badge/repositories/2152" alt="langgenius%2Fdify | 趋势转变" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </div>
 
-Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 工作流、RAG 管道、Agent、模型管理、可观测性功能等，让您可以快速从原型到生产。
-
-当前Dify-Tidb版本使用Tidb替换了PostgreSQL，完全实现了Dify的全部功能，并且保持和Dify的同步更新。   
-以下是其核心功能列表：
+Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 工作流、RAG 管道、Agent、模型管理、可观测性功能等，让您可以快速从原型到生产。以下是其核心功能列表：
 </br> </br>
 
 **1. 工作流**: 
@@ -157,18 +153,12 @@ Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 
 我们提供[ Dify 云服务](https://dify.ai)，任何人都可以零设置尝试。它提供了自部署版本的所有功能，并在沙盒计划中包含 200 次免费的 GPT-4 调用。
 
 - **自托管 Dify 社区版</br>**
-使用这个[入门指南](#快速启动)快速在您的环境中运行 Dify。
+使用这个[入门指南](#quick-start)快速在您的环境中运行 Dify。
 使用我们的[文档](https://docs.dify.ai)进行进一步的参考和更深入的说明。
 
 - **面向企业/组织的 Dify</br>**
 我们提供额外的面向企业的功能。[给我们发送电子邮件](mailto:business@dify.ai?subject=[GitHub]Business%20License%20Inquiry)讨论企业需求。 </br>
   > 对于使用 AWS 的初创公司和中小型企业，请查看 [AWS Marketplace 上的 Dify 高级版](https://aws.amazon.com/marketplace/pp/prodview-t22mebxzwjhu6)，并使用一键部署到您自己的 AWS VPC。它是一个价格实惠的 AMI 产品，提供了使用自定义徽标和品牌创建应用程序的选项。
-
-## 保持领先
-
-在 GitHub 上给 Dify Star，并立即收到新版本的通知。
-
-![star-us](https://github.com/langgenius/dify/assets/13230914/b823edc1-6388-4e25-ad45-2f6b187adbb4)
 
 ## 安装社区版
 
@@ -177,7 +167,7 @@ Dify 是一个开源的 LLM 应用开发平台。其直观的界面结合了 AI 
 在安装 Dify 之前，请确保您的机器满足以下最低系统要求：
 
 - CPU >= 2 Core
-- RAM >= 4 GiB
+- RAM >= 4GB
 
 ### 快速启动
 
@@ -195,58 +185,42 @@ docker compose up -d
 
 如果您需要自定义配置，请参考 [.env.example](docker/.env.example) 文件中的注释，并更新 `.env` 文件中对应的值。此外，您可能需要根据您的具体部署环境和需求对 `docker-compose.yaml` 文件本身进行调整，例如更改镜像版本、端口映射或卷挂载。完成任何更改后，请重新运行 `docker-compose up -d`。您可以在[此处](https://docs.dify.ai/getting-started/install-self-hosted/environments)找到可用环境变量的完整列表。
 
-#### 使用 Helm Chart 部署
+### 使用 Helm Chart 部署
 
 使用 [Helm Chart](https://helm.sh/) 版本或者 YAML 文件，可以在 Kubernetes 上部署 Dify。
 
-- [Helm Chart by @LeoQuote](https://github.com/douban/charts/tree/master/charts/dify)
-- [Helm Chart by @BorisPolonsky](https://github.com/BorisPolonsky/dify-helm)
-- [YAML 文件 by @Winson-030](https://github.com/Winson-030/dify-kubernetes)
+####  安装方式
 
-#### 使用 Terraform 部署
+您可以通过 Helm Charts 轻松安装 Yamler。请按照以下步骤操作：
 
-使用 [terraform](https://www.terraform.io/) 一键将 Dify 部署到云平台
+1. 添加 Yamler Helm 仓库：
+```bash
+helm repo add dify-tidb https://itc-cloud-soft.github.io/chart/dify/
+```
+2. 更新 Helm 仓库：
+```bash
+helm repo update
+```
+3. 使用 Helm 安装 Yamler：
+```bash
+helm install my-minio dify-tidb/minio --version 14.1.8
+```
+4. 查看安装状态：
+```bash
+helm status my-minio
+```
+## 访问 Dify-Tidb
+当访问 Dify-Tidb 首页时，可以使用 Lens 或 Kubernetes 命令来代理 URL。
 
-##### Azure Global
-- [Azure Terraform by @nikawang](https://github.com/nikawang/dify-azure-terraform)
+1. 使用 Lens 访问
+按下转发按钮将自动转发到 URL
+<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/yamler/yamler_lens.png"/></td> </tr> </table>
 
-##### Google Cloud
-- [Google Cloud Terraform by @sotazum](https://github.com/DeNA/dify-google-cloud-terraform)
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=langgenius/dify&type=Date)](https://star-history.com/#langgenius/dify&Date)
-
-
-## Contributing
-
-对于那些想要贡献代码的人，请参阅我们的[贡献指南](https://github.com/langgenius/dify/blob/main/CONTRIBUTING.md)。
-同时，请考虑通过社交媒体、活动和会议来支持 Dify 的分享。
-
-> 我们正在寻找贡献者来帮助将Dify翻译成除了中文和英文之外的其他语言。如果您有兴趣帮助，请参阅我们的[i18n README](https://github.com/langgenius/dify/blob/main/web/i18n/README.md)获取更多信息，并在我们的[Discord社区服务器](https://discord.gg/8Tpq4AcN9c)的`global-users`频道中留言。
-
-**Contributors**
-
-<a href="https://github.com/langgenius/dify/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=langgenius/dify" />
-</a>
-
-## 社区与支持
-
-我们欢迎您为 Dify 做出贡献，以帮助改善 Dify。包括：提交代码、问题、新想法，或分享您基于 Dify 创建的有趣且有用的 AI 应用程序。同时，我们也欢迎您在不同的活动、会议和社交媒体上分享 Dify。
-
-- [Github Discussion](https://github.com/langgenius/dify/discussions). 👉：分享您的应用程序并与社区交流。
-- [GitHub Issues](https://github.com/langgenius/dify/issues)。👉：使用 Dify.AI 时遇到的错误和问题，请参阅[贡献指南](CONTRIBUTING.md)。
-- [电子邮件支持](mailto:hello@dify.ai?subject=[GitHub]Questions%20About%20Dify)。👉：关于使用 Dify.AI 的问题。
-- [Discord](https://discord.gg/FngNHpbcY7)。👉：分享您的应用程序并与社区交流。
-- [X(Twitter)](https://twitter.com/dify_ai)。👉：分享您的应用程序并与社区交流。
-- [商业许可](mailto:business@dify.ai?subject=[GitHub]Business%20License%20Inquiry)。👉：有关商业用途许可 Dify.AI 的商业咨询。
- - [微信]() 👉：扫描下方二维码，添加微信好友，备注 Dify，我们将邀请您加入 Dify 社区。  
-<img src="./images/wechat.png" alt="wechat" width="100"/>
-
-## 安全问题
-
-为了保护您的隐私，请避免在 GitHub 上发布安全问题。发送问题至 security@dify.ai，我们将为您做更细致的解答。
+2. 使用 Kubernetes 命令访问
+```shell
+kubectl port-forward service/my-helm-yarl 8081:8080 --namespace yamler
+```
+然后在浏览器中输入`https://localhost:8081`访问
 
 ## License
 
