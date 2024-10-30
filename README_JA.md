@@ -223,13 +223,13 @@ Dify-Tidb ホームページにアクセスする際に、Lens または Kuberne
 
 1. Lens を使用してアクセスする todo
 転送ボタンを押すと、URL に自動的に転送されま
-<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/yamler/yamler_lens.png"/></td> </tr> </table>
+<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/dify-tidb/img_1.png"/></td> </tr> </table>
 
 2. Kubernetes コマンドを使用してアクセスする
 ```shell
-kubectl port-forward service/my-minio  8081:8080 --namespace dify
+kubectl port-forward service/dify-frontend 8081:80 --namespace dify
 ```
-その後、ブラウザで https://localhost:80 にアクセスします。
+その後、ブラウザで https://localhost:8081 にアクセスします。
 ## ライセンス
 
 このリポジトリは、Dify Open Source License にいくつかの追加制限を加えた[Difyオープンソースライセンス](LICENSE)の下で利用可能です。

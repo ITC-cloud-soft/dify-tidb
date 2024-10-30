@@ -214,11 +214,11 @@ helm status my-minio
 
 1. 使用 Lens 访问
 按下转发按钮将自动转发到 URL
-<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/yamler/yamler_lens.png"/></td> </tr> </table>
+<table> <tr> <td><img src="https://itc-cloud-soft.github.io/doc-open/img/dify-tidb/img_1.png"/></td> </tr> </table>
 
 2. 使用 Kubernetes 命令访问
 ```shell
-kubectl port-forward service/my-helm-yarl 8081:8080 --namespace yamler
+kubectl port-forward service/dify-frontend 8081:80 --namespace dify
 ```
 然后在浏览器中输入`https://localhost:8081`访问
 
